@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Starting Point: Schedules & Your Year</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8fafc;
+        }
+        .month-card {
+            transition: all 0.2s ease-in-out;
+        }
+        .month-card:hover {
+            transform: translateY(-2px);
+        }
+        .season-spring { border-top: 4px solid #10b981; }
+        .season-summer { border-top: 4px solid #f59e0b; }
+        .season-autumn { border-top: 4px solid #d97706; }
+        .season-winter { border-top: 4px solid #3b82f6; }
+    </style>
+</head>
+<body class="text-slate-800 antialiased min-h-screen pb-12">
+
+    <!-- Header Section -->
+    <header class="bg-gradient-to-r from-slate-900 via-indigo-950 to-slate-900 text-white shadow-md">
+        <div class="max-w-5xl mx-auto px-4 py-6 sm:px-6 lg:px-8">
+            <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2">
+                <div>
+                    <!-- Teacher Name Tag -->
+                    <div class="inline-flex items-center gap-2 px-3 py-1 bg-amber-400/20 text-amber-300 rounded-full text-xs font-medium border border-amber-400/30 mb-2">
+                        <i class="fa-solid font-bold fa-chalkboard-user"></i>
+                        <span>Teacher Verónica Hermida</span>
+                    </div>
+                    <h1 class="text-2xl sm:text-3xl font-bold tracking-tight">Starting Point</h1>
+                    <p class="text-slate-300 text-sm sm:text-base mt-1">Unit: Schedules & Work-Life Balance</p>
+                </div>
+                <div class="text-xs bg-slate-800/80 border border-slate-700 px-3 py-2 rounded-lg text-slate-300 hidden sm:block">
+                    <i class="fa-solid fa-graduation-cap text-indigo-400 mr-1"></i> Business English | Elementary
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Container -->
+    <main class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 mt-8 space-y-8">
+
+        <!-- Welcome & Simple Instructions Card -->
+        <section class="bg-white rounded-2xl p-6 shadow-sm border border-slate-200/80">
+            <h2 class="text-lg font-semibold text-slate-900 mb-2 flex items-center gap-2">
+                <i class="fa-solid fa-list-check text-indigo-600"></i> Instructions for Students
+            </h2>
+            <ol class="list-decimal list-inside text-sm sm:text-base text-slate-600 space-y-2 leading-relaxed">
+                <li><strong class="text-slate-800">Select your active tool</strong> (Busy Month or Holiday Month) below, then click on the corresponding months in your calendar.</li>
+                <li><strong class="text-slate-800">Highlight your favourite season</strong> to color-code your year layout.</li>
+                <li><strong class="text-slate-800">Type your answers</strong> in the response boxes under each question.</li>
+            </ol>
+        </section>
+
+        <!-- Interactive Calendar & Season Selector -->
+        <section class="bg-white rounded-2xl p-6 shadow-sm border border-slate-200/80 space-y-6">
+            <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-slate-100 pb-4">
+                <div>
+                    <h2 class="text-xl font-bold text-slate-900">1. Interactive Year Planner</h2>
+                    <p class="text-xs sm:text-sm text-slate-500">Mark your year to organize your thoughts before answering.</p>
+                </div>
+
+                <!-- Tagging Tools -->
+                <div class="flex flex-wrap items-center gap-2">
+                    <span class="text-xs font-semibold text-slate-500 uppercase tracking-wider w-full sm:w-auto">Mode:</span>
+                    <button id="tool-busy" onclick="setMode('busy')" class="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs sm:text-sm font-medium border transition-all bg-rose-50 border-rose-300 text-rose-700 shadow-sm">
+                        <i class="fa-solid fa-briefcase"></i> Tag Busy Month
+                    </button>
+                    <button id="tool-holiday" onclick="setMode('holiday')" class="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs sm:text-sm font-medium border transition-all bg-slate-100 border-slate-300 text-slate-600 hover:bg-slate-200">
+                        <i class="fa-solid fa-plane-departure"></i> Tag Holiday Month
+                    </button>
+                </div>
+            </div>
+
+            <!-- Season Selector -->
+            <div class="bg-slate-50 p-4 rounded-xl border border-slate-200/60">
+                <label class="block text-xs font-semibold text-slate-600 uppercase tracking-wider mb-2">Select your favourite season:</label>
+                <div class="grid grid-cols-2 sm:grid-cols-4 gap-2">
+                    <button onclick="selectFavSeason('spring')" id="btn-spring" class="season-btn flex items-center justify-center gap-2 py-2 px-3 rounded-lg border border-slate-200 bg-white text-slate-700 text-sm font-medium hover:border-emerald-500 transition-all">
+                        <i class="fa-solid fa-seedling text-emerald-500"></i> Spring
+                    </button>
+                    <button onclick="selectFavSeason('summer')" id="btn-summer" class="season-btn flex items-center justify-center gap-2 py-2 px-3 rounded-lg border border-slate-200 bg-white text-slate-700 text-sm font-medium hover:border-amber-500 transition-all">
+                        <i class="fa-solid fa-sun text-amber-500"></i> Summer
+                    </button>
+                    <button onclick="selectFavSeason('autumn')" id="btn-autumn" class="season-btn flex items-center justify-center gap-2 py-2 px-3 rounded-lg border border-slate-200 bg-white text-slate-700 text-sm font-medium hover:border-orange-500 transition-all">
+                        <i class="fa-solid fa-leaf text-orange-500"></i> Autumn
+                    </button>
+                    <button onclick="selectFavSeason('winter')" id="btn-winter" class="season-btn flex items-center justify-center gap-2 py-2 px-3 rounded-lg border border-slate-200 bg-white text-slate-700 text-sm font-medium hover:border-blue-500 transition-all">
+                        <i class="fa-solid fa-snowflake text-blue-500"></i> Winter
+                    </button>
+                </div>
+            </div>
+
+            <!-- Months Grid -->
+            <div id="months-grid" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3">
+                <!-- Javascript will inject 12 months here -->
+            </div>
+            
+            <div class="flex justify-end">
+                <button onclick="clearCalendar()" class="text-xs text-slate-400 hover:text-slate-600 underline">Reset Calendar</button>
+            </div>
+        </section>
+
+        <!-- Questions Section -->
+        <section class="bg-white rounded-2xl p-6 shadow-sm border border-slate-200/80 space-y-6">
+            <div>
+                <h2 class="text-xl font-bold text-slate-900">2. Answer the Questions</h2>
+                <p class="text-xs sm:text-sm text-slate-500">Write your answers in the boxes below based on your calendar.</p>
+            </div>
+
+            <div class="space-y-6">
+                <!-- Question 1 -->
+                <div class="bg-slate-50/80 rounded-xl p-4 sm:p-5 border border-slate-200/70 space-y-3">
+                    <div class="flex items-start gap-3">
+                        <span class="flex items-center justify-center w-7 h-7 rounded-full bg-indigo-600 text-white text-sm font-bold shrink-0 mt-0.5">1</span>
+                        <h3 class="text-base sm:text-lg font-semibold text-slate-800">What's your busiest month?</h3>
+                    </div>
+                    <textarea id="q1-notes" rows="2" placeholder="Write your answer here..." class="w-full p-3 text-sm rounded-lg border border-slate-300 focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none transition-all resize-none bg-white"></textarea>
+                </div>
+
+                <!-- Question 2 -->
+                <div class="bg-slate-50/80 rounded-xl p-4 sm:p-5 border border-slate-200/70 space-y-3">
+                    <div class="flex items-start gap-3">
+                        <span class="flex items-center justify-center w-7 h-7 rounded-full bg-indigo-600 text-white text-sm font-bold shrink-0 mt-0.5">2</span>
+                        <h3 class="text-base sm:text-lg font-semibold text-slate-800">Which month do you normally take a holiday in?</h3>
+                    </div>
+                    <textarea id="q2-notes" rows="2" placeholder="Write your answer here..." class="w-full p-3 text-sm rounded-lg border border-slate-300 focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none transition-all resize-none bg-white"></textarea>
+                </div>
+
+                <!-- Question 3 -->
+                <div class="bg-slate-50/80 rounded-xl p-4 sm:p-5 border border-slate-200/70 space-y-3">
+                    <div class="flex items-start gap-3">
+                        <span class="flex items-center justify-center w-7 h-7 rounded-full bg-indigo-600 text-white text-sm font-bold shrink-0 mt-0.5">3</span>
+                        <h3 class="text-base sm:text-lg font-semibold text-slate-800">Which is your favourite season: spring, summer, autumn or winter? Why?</h3>
+                    </div>
+                    <textarea id="q3-notes" rows="2" placeholder="Write your answer here..." class="w-full p-3 text-sm rounded-lg border border-slate-300 focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none transition-all resize-none bg-white"></textarea>
+                </div>
+            </div>
+        </section>
+
+        <!-- Class Share / Readiness Summary -->
+        <section class="bg-indigo-900 text-white rounded-2xl p-6 text-center space-y-3 shadow-md">
+            <h3 class="text-lg font-bold">Ready to share with Teacher Verónica & Classmates?</h3>
+            <p class="text-indigo-200 text-sm max-w-xl mx-auto">Use your calendar markings and written answers during class discussion!</p>
+        </section>
+
+    </main>
+
+    <!-- JS Logic -->
+    <script>
+        const monthsData = [
+            { id: 1, name: 'January', season: 'winter' },
+            { id: 2, name: 'February', season: 'winter' },
+            { id: 3, name: 'March', season: 'spring' },
+            { id: 4, name: 'April', season: 'spring' },
+            { id: 5, name: 'May', season: 'spring' },
+            { id: 6, name: 'June', season: 'summer' },
+            { id: 7, name: 'July', season: 'summer' },
+            { id: 8, name: 'August', season: 'summer' },
+            { id: 9, name: 'September', season: 'autumn' },
+            { id: 10, name: 'October', season: 'autumn' },
+            { id: 11, name: 'November', season: 'autumn' },
+            { id: 12, name: 'December', season: 'winter' }
+        ];
+
+        let monthState = {}; 
+        let selectedTool = 'busy'; 
+        let favoriteSeason = null;
+
+        // Initialize App
+        window.onload = function() {
+            renderCalendar();
+        };
+
+        function setMode(mode) {
+            selectedTool = mode;
+            const busyBtn = document.getElementById('tool-busy');
+            const holidayBtn = document.getElementById('tool-holiday');
+
+            if (mode === 'busy') {
+                busyBtn.className = 'flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs sm:text-sm font-medium border transition-all bg-rose-50 border-rose-300 text-rose-700 shadow-sm';
+                holidayBtn.className = 'flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs sm:text-sm font-medium border transition-all bg-slate-100 border-slate-300 text-slate-600 hover:bg-slate-200';
+            } else {
+                holidayBtn.className = 'flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs sm:text-sm font-medium border transition-all bg-emerald-50 border-emerald-300 text-emerald-700 shadow-sm';
+                busyBtn.className = 'flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs sm:text-sm font-medium border transition-all bg-slate-100 border-slate-300 text-slate-600 hover:bg-slate-200';
+            }
+        }
+
+        function selectFavSeason(season) {
+            favoriteSeason = (favoriteSeason === season) ? null : season;
+            
+            document.querySelectorAll('.season-btn').forEach(btn => {
+                btn.classList.remove('ring-2', 'ring-indigo-500', 'bg-slate-100', 'font-bold');
+            });
+
+            if (favoriteSeason) {
+                const btn = document.getElementById(`btn-${season}`);
+                btn.classList.add('ring-2', 'ring-indigo-500', 'bg-slate-100', 'font-bold');
+            }
+
+            renderCalendar();
+        }
+
+        function toggleMonthTag(monthId) {
+            if (!monthState[monthId]) {
+                monthState[monthId] = { busy: false, holiday: false };
+            }
+
+            if (selectedTool === 'busy') {
+                monthState[monthId].busy = !monthState[monthId].busy;
+            } else if (selectedTool === 'holiday') {
+                monthState[monthId].holiday = !monthState[monthId].holiday;
+            }
+
+            renderCalendar();
+        }
+
+        function renderCalendar() {
+            const grid = document.getElementById('months-grid');
+            grid.innerHTML = '';
+
+            monthsData.forEach(m => {
+                const state = monthState[m.id] || { busy: false, holiday: false };
+                const isFavSeason = favoriteSeason === m.season;
+
+                let cardClasses = `month-card cursor-pointer p-3 sm:p-4 rounded-xl border transition-all bg-white flex flex-col justify-between h-28 relative overflow-hidden season-${m.season}`;
+                
+                if (isFavSeason) {
+                    cardClasses += ' ring-2 ring-indigo-400 shadow-sm';
+                } else {
+                    cardClasses += ' border-slate-200 hover:border-slate-300';
+                }
+
+                let badges = '';
+                if (state.busy) {
+                    badges += `<span class="inline-flex items-center gap-1 px-2 py-0.5 rounded text-[10px] font-semibold bg-rose-100 text-rose-700 border border-rose-200">
+                                <i class="fa-solid fa-briefcase"></i> Busy
+                               </span>`;
+                }
+                if (state.holiday) {
+                    badges += `<span class="inline-flex items-center gap-1 px-2 py-0.5 rounded text-[10px] font-semibold bg-emerald-100 text-emerald-700 border border-emerald-200">
+                                <i class="fa-solid fa-plane"></i> Holiday
+                               </span>`;
+                }
+
+                const cardHtml = `
+                    <div onclick="toggleMonthTag(${m.id})" class="${cardClasses}">
+                        <div class="flex justify-between items-start">
+                            <span class="font-bold text-slate-800 text-sm sm:text-base">${m.name}</span>
+                            ${isFavSeason ? '<i class="fa-solid fa-star text-amber-400 text-xs"></i>' : ''}
+                        </div>
+                        <div class="flex flex-col gap-1 items-start mt-1">
+                            ${badges}
+                        </div>
+                        <span class="text-[10px] text-slate-400 capitalize self-end">${m.season}</span>
+                    </div>
+                `;
+
+                grid.innerHTML += cardHtml;
+            });
+        }
+
+        function clearCalendar() {
+            monthState = {};
+            favoriteSeason = null;
+            document.querySelectorAll('.season-btn').forEach(btn => {
+                btn.classList.remove('ring-2', 'ring-indigo-500', 'bg-slate-100', 'font-bold');
+            });
+            renderCalendar();
+        }
+    </script>
+</body>
+</html>
